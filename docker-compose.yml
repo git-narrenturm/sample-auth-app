@@ -1,0 +1,35 @@
+services:
+  # backend:
+  #   build: .
+  #   image: sample-auth-backend:latest
+  #   restart: always
+  #   ports:
+  #     - "3000:3000"
+  #   depends_on:
+  #     - db
+  #   env_file:
+  #     - ./.env
+  #   networks:
+  #     - auth-network
+  #   command: npm run start:dev
+
+  db:
+    image: postgres:14.12
+    container_name: sample-auth-postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    env_file:
+      - ./.env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - auth-network
+
+networks:
+  auth-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  esdata:
