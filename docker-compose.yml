@@ -20,7 +20,7 @@ services:
     ports:
       - "5432:5432"
     env_file:
-      - ./.env
+      - ./.env.example
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
@@ -32,6 +32,8 @@ services:
     restart: always
     ports:
       - "6379:6379"
+    env_file:
+      - ./.env.example
     networks:
       - auth-network
 

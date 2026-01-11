@@ -8,6 +8,7 @@
   "description": "",
   "scripts": {
     "start": "tsx -r tsconfig-paths/register ./src/server.ts",
+    "start:dev": "dotenv -e .env.example tsx -r tsconfig-paths/register ./src/server.ts",
     "start:watch": "tsx watch -r tsconfig-paths/register ./src/server.ts",
     "start:debug": "tsx watch -r tsconfig-paths/register ./src/server.ts",
     "test": "jest --config jest.config.js",
@@ -37,6 +38,7 @@
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^25.0.3",
     "@types/supertest": "^6.0.3",
+    "dotenv-cli": "^11.0.0",
     "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.4",
