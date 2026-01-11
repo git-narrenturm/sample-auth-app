@@ -39,7 +39,7 @@ export class AuthService {
       throw new Error('Invalid credentials');
     }
 
-    return await this.generateToken({ id: user.id, role: user.role});
+    return await this.generateToken({ id: user.id, role: user.role });
   }
 
   private async generateToken(user: TokenOptions) {

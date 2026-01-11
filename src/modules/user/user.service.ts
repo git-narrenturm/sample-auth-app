@@ -3,10 +3,7 @@ import { Repository } from 'typeorm';
 import { AppDataSource } from '@config/database.config';
 import { User, UserStatus } from '@entities/user.entity';
 import { UserDto } from './dto/user.dto';
-import {
-  GetUsersRequestDto,
-  GetUsersResponseDto,
-} from './dto/get-users.dto';
+import { GetUsersRequestDto, GetUsersResponseDto } from './dto/get-users.dto';
 import { CreateUserDto } from './dto/create-user.dto';
 
 export class UserService {
@@ -38,7 +35,7 @@ export class UserService {
   /**
    * Регистрирует нового пользователя
    */
-  async create(dto: CreateUserDto) {
+  async create(dto: CreateUserDto): Promise<UserDto> {
     const { email, password, ...userData } = dto;
 
     if (!this.validateEmail(email)) {
@@ -100,7 +97,7 @@ export class UserService {
   /**
    * Блокирует пользователя по ID
    */
-  async block(id: string) {
+  async block(id: string): Promise<UserDto> {
     const user = await this.userRepo.findOne({ where: { id } });
     if (!user) {
       throw new Error('User not found');

@@ -12,6 +12,12 @@ export default {
   moduleNameMapper: {
     '^@entities/(.*)$': '<rootDir>/src/database/entities/$1',
     '^@config/(.*)$': '<rootDir>/src/config/$1',
+    '^@middleware/(.*)$': '<rootDir>/src/middleware/$1',
+    '^@root/(.*)$': '<rootDir>/src/$1',
+    '^@routes/(.*)$': '<rootDir>/src/routes/$1',
+    '^@shared/(.*)$': '<rootDir>/src/shared/$1',
+    '^@utils/(.*)$': '<rootDir>/src/shared/utils/$1',
+    // модули
     '^@auth/(.*)$': '<rootDir>/src/modules/auth/$1',
     '^@user/(.*)$': '<rootDir>/src/modules/user/$1',
   },

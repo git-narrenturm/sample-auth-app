@@ -15,16 +15,3 @@ export const AppDataSource = new DataSource({
   synchronize: true,
   logging: false,
 });
-
-/**
- * инициализация БД
- */
-export const initializeDatabase = async () => {
-  try {
-    await AppDataSource.initialize();
-    console.log("DataSource initialized");
-  } catch (err) {
-    console.error("Database initialization failed", err);
-    process.exit(1);
-  }
-};

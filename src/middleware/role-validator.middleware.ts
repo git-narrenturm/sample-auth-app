@@ -19,15 +19,15 @@ export class RoleValidatorMiddleware {
       }
 
       const { id: userId, role: userRole } = req.user;
-      const { id: paramId } = req.params;
+      const { userId: paramId } = req.params;
 
       // Если пользователь в selfOnly и обращается к себе — разрешаем
       if (selfOnly.includes(userRole) && userId === paramId) {
         return next();
       }
 
-      // Если пользователь в requires — разрешаем
-      if (requires.includes(userRole)) {
+      // Если пользователь в requires и не в selfOnly — разрешаем
+      if (requires.includes(userRole) && !selfOnly.includes(userRole)) {
         return next();
       }
 

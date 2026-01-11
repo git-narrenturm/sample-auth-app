@@ -1,23 +1,31 @@
-import "reflect-metadata";
-import "tsconfig-paths/register";
+import 'reflect-metadata';
+import 'tsconfig-paths/register';
 
-import express from "express";
-import cors from "cors";
+import express from 'express';
+import cors from 'cors';
 
-import { initializeDatabase } from "@config/database.config";
-
-import userRoute from "@routes/user.route";
-import authRoute from "@routes/auth.route";
+import userRoute from '@routes/user.route';
+import authRoute from '@routes/auth.route';
+import redisService from '@database/redis.service';
+import databaseService from '@database/database.service';
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-await initializeDatabase();
+(async () => {
+  try {
+    await databaseService.init();
+    await redisService.init();
+    app.use('/api/user', userRoute);
+    app.use('/api/auth', authRoute);
 
-app.use('/api/user', userRoute);
-app.use('/api/auth', authRoute);
+    const PORT = process.env.NODE_PORT || 3000;
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+  } catch (error) {
+    console.error('Error during server initialization:', error);
+  }
+})();
 
-const PORT = process.env.NODE_PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+export default app;

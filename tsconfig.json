@@ -22,8 +22,10 @@
     "noFallthroughCasesInSwitch": false,
     "paths": {
       "@config/*": ["./src/config/*"],
+      "@database/*": ["./src/database/*"],
       "@entities/*": ["./src/database/entities/*"],
       "@middleware/*": ["./src/middleware/*"],
+      "@root/*": ["./src/*"],
       "@routes/*": ["./src/routes/*"],
       "@shared/*": ["./src/shared/*"],
       "@utils/*": ["./src/shared/utils/*"],      

@@ -26,6 +26,15 @@ services:
     networks:
       - auth-network
 
+  redis:
+    image: redis:7.2
+    container_name: sample-auth-redis
+    restart: always
+    ports:
+      - "6379:6379"
+    networks:
+      - auth-network
+
 networks:
   auth-network:
     driver: bridge
